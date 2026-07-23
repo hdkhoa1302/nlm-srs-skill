@@ -1,12 +1,13 @@
 # nlm-srs-query
 
-An unofficial Claude Code skill for querying and maintaining Vietnamese software requirements specification (SRS) sources in Google NotebookLM through the `nlm` CLI. It discovers notebooks and sources at runtime, answers with verbatim citations, preserves follow-up context, and keeps write operations explicit.
+An unofficial Agent Skill for querying and maintaining Vietnamese software requirements specification (SRS) sources in Google NotebookLM through the `nlm` CLI. It discovers notebooks and sources at runtime, answers with verbatim citations, preserves follow-up context, and keeps write operations explicit.
 
 ## Prerequisites
 
-- Claude Code with skill support.
+- A compatible AI agent with Agent Skills support.
 - An installed `nlm` CLI compatible with version 0.7.7.
 - A Google account with access to NotebookLM and the target notebooks.
+- Node.js for the recommended `npx skills` installer; otherwise use the `curl` fallback.
 
 Install `nlm` using the [upstream installation instructions](https://github.com/jacob-bd/notebooklm-mcp-cli#installation). This project intentionally does not duplicate an installation command that may change upstream.
 
@@ -16,27 +17,53 @@ Verify the CLI after installation:
 nlm --version
 ```
 
-## Install the skill
+## Quick install
 
-### User scope — one command
+The recommended installer is the open Agent Skills CLI. It reads this repository directly and installs the skill in the correct agent directory.
 
-Install for all Claude Code projects:
+### Claude Code
+
+Install globally for all projects:
+
+```bash
+npx skills add hdkhoa1302/nlm-srs-skill -g -y
+```
+
+Install only in the current project:
+
+```bash
+npx skills add hdkhoa1302/nlm-srs-skill -y
+```
+
+### Other AI agents
+
+Install globally for every supported agent detected on the machine:
+
+```bash
+npx skills add hdkhoa1302/nlm-srs-skill -g -a '*' -s nlm-srs-query -y
+```
+
+Or target one or more agents explicitly:
+
+```bash
+npx skills add hdkhoa1302/nlm-srs-skill -g \
+  -a codex cursor gemini-cli github-copilot \
+  -s nlm-srs-query -y
+```
+
+Common targets include `claude-code`, `codex`, `cursor`, `gemini-cli`, `github-copilot`, `opencode`, `windsurf`, `cline`, and `antigravity`. Run `npx skills add hdkhoa1302/nlm-srs-skill --list` to verify discovery without installing.
+
+### No Node.js fallback
+
+Install for Claude Code globally with `curl`:
 
 ```bash
 mkdir -p ~/.claude/skills/nlm-srs-query && curl -fsSL https://raw.githubusercontent.com/hdkhoa1302/nlm-srs-skill/main/SKILL.md -o ~/.claude/skills/nlm-srs-query/SKILL.md
 ```
 
-### Project scope — one command
+Restart the agent or begin a new session so the skill is rediscovered.
 
-From the target project root:
-
-```bash
-mkdir -p .claude/skills/nlm-srs-query && curl -fsSL https://raw.githubusercontent.com/hdkhoa1302/nlm-srs-skill/main/SKILL.md -o .claude/skills/nlm-srs-query/SKILL.md
-```
-
-Restart Claude Code or begin a new session so the skill is rediscovered.
-
-> `nlm skill install claude-code` installs the upstream generic NotebookLM skill, not this specialized `nlm-srs-query` skill.
+> `nlm skill install <tool>` installs the upstream generic NotebookLM skill bundled with `nlm`, not this specialized `nlm-srs-query` skill.
 
 ## Authenticate
 
@@ -151,7 +178,13 @@ Sync changes NotebookLM data. Never add `--confirm` before the user approves the
 
 ## Update
 
-Rerun the matching installation command above. It replaces only `SKILL.md` with the current `main` version.
+Agent Skills CLI installation:
+
+```bash
+npx skills update nlm-srs-query -g -y
+```
+
+Omit `-g` for a project installation. For the `curl` fallback, rerun its installation command.
 
 ## Uninstall
 
