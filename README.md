@@ -18,33 +18,25 @@ nlm --version
 
 ## Install the skill
 
-Clone this repository first:
+### User scope — one command
+
+Install for all Claude Code projects:
 
 ```bash
-git clone https://github.com/hdkhoa1302/nlm-srs-skill.git
-cd nlm-srs-skill
+mkdir -p ~/.claude/skills/nlm-srs-query && curl -fsSL https://raw.githubusercontent.com/hdkhoa1302/nlm-srs-skill/main/SKILL.md -o ~/.claude/skills/nlm-srs-query/SKILL.md
 ```
 
-### User scope
+### Project scope — one command
 
-From the cloned repository, install for all Claude Code projects:
-
-```bash
-mkdir -p ~/.claude/skills/nlm-srs-query
-cp SKILL.md ~/.claude/skills/nlm-srs-query/SKILL.md
-```
-
-### Project scope
-
-From the cloned repository, install only for one project:
+From the target project root:
 
 ```bash
-PROJECT_DIR=/absolute/path/to/project
-mkdir -p "$PROJECT_DIR/.claude/skills/nlm-srs-query"
-cp SKILL.md "$PROJECT_DIR/.claude/skills/nlm-srs-query/SKILL.md"
+mkdir -p .claude/skills/nlm-srs-query && curl -fsSL https://raw.githubusercontent.com/hdkhoa1302/nlm-srs-skill/main/SKILL.md -o .claude/skills/nlm-srs-query/SKILL.md
 ```
 
 Restart Claude Code or begin a new session so the skill is rediscovered.
+
+> `nlm skill install claude-code` installs the upstream generic NotebookLM skill, not this specialized `nlm-srs-query` skill.
 
 ## Authenticate
 
@@ -159,28 +151,7 @@ Sync changes NotebookLM data. Never add `--confirm` before the user approves the
 
 ## Update
 
-From the cloned repository, fetch the latest version first:
-
-```bash
-git pull --ff-only
-```
-
-Then replace the installed copy.
-
-User scope:
-
-```bash
-cp SKILL.md ~/.claude/skills/nlm-srs-query/SKILL.md
-```
-
-Project scope, from the cloned repository:
-
-```bash
-PROJECT_DIR=/absolute/path/to/project
-cp SKILL.md "$PROJECT_DIR/.claude/skills/nlm-srs-query/SKILL.md"
-```
-
-Review upstream changes before replacement if the installed copy has local edits.
+Rerun the matching installation command above. It replaces only `SKILL.md` with the current `main` version.
 
 ## Uninstall
 
