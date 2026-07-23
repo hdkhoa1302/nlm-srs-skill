@@ -18,9 +18,16 @@ nlm --version
 
 ## Install the skill
 
+Clone this repository first:
+
+```bash
+git clone https://github.com/hdkhoa1302/nlm-srs-skill.git
+cd nlm-srs-skill
+```
+
 ### User scope
 
-Install for all Claude Code projects:
+From the cloned repository, install for all Claude Code projects:
 
 ```bash
 mkdir -p ~/.claude/skills/nlm-srs-query
@@ -29,11 +36,12 @@ cp SKILL.md ~/.claude/skills/nlm-srs-query/SKILL.md
 
 ### Project scope
 
-From the target project root, install only for that project:
+From the cloned repository, install only for one project:
 
 ```bash
-mkdir -p .claude/skills/nlm-srs-query
-cp /path/to/nlm-srs-skill/SKILL.md .claude/skills/nlm-srs-query/SKILL.md
+PROJECT_DIR=/absolute/path/to/project
+mkdir -p "$PROJECT_DIR/.claude/skills/nlm-srs-query"
+cp SKILL.md "$PROJECT_DIR/.claude/skills/nlm-srs-query/SKILL.md"
 ```
 
 Restart Claude Code or begin a new session so the skill is rediscovered.
@@ -159,10 +167,11 @@ User scope:
 cp SKILL.md ~/.claude/skills/nlm-srs-query/SKILL.md
 ```
 
-Project scope:
+Project scope, from the cloned repository:
 
 ```bash
-cp /path/to/nlm-srs-skill/SKILL.md .claude/skills/nlm-srs-query/SKILL.md
+PROJECT_DIR=/absolute/path/to/project
+cp SKILL.md "$PROJECT_DIR/.claude/skills/nlm-srs-query/SKILL.md"
 ```
 
 Review upstream changes before replacement if the installed copy has local edits.
