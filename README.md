@@ -26,24 +26,18 @@ The recommended installer is the open Agent Skills CLI. It reads this repository
 Install globally for all projects:
 
 ```bash
-npx skills add hdkhoa1302/nlm-srs-skill -g -y
+npx skills add hdkhoa1302/nlm-srs-skill -g -a claude-code -s nlm-srs-query -y
 ```
 
 Install only in the current project:
 
 ```bash
-npx skills add hdkhoa1302/nlm-srs-skill -y
+npx skills add hdkhoa1302/nlm-srs-skill -a claude-code -s nlm-srs-query -y
 ```
 
 ### Other AI agents
 
-Install globally for every supported agent detected on the machine:
-
-```bash
-npx skills add hdkhoa1302/nlm-srs-skill -g -a '*' -s nlm-srs-query -y
-```
-
-Or target one or more agents explicitly:
+Target one or more agents explicitly:
 
 ```bash
 npx skills add hdkhoa1302/nlm-srs-skill -g \
