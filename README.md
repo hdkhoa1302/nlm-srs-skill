@@ -159,7 +159,13 @@ Sync changes NotebookLM data. Never add `--confirm` before the user approves the
 
 ## Update
 
-Replace the installed copy with the latest repository version.
+From the cloned repository, fetch the latest version first:
+
+```bash
+git pull --ff-only
+```
+
+Then replace the installed copy.
 
 User scope:
 
